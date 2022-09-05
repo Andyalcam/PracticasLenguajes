@@ -1,9 +1,9 @@
 #lang plai
 
 ;;1
+;; filtra-lista: (listof any) procedure → (listof any)
 ;; Funcion que filtra una lista dada y regresa otra con los
 ;; los elementos que coincidadan con el predicado pasado por parametro
-;; filtra-lista: (listof any) procedure → (listof any)
 (define (filtra-lista lista predicado)
 	(if (empty? lista)
 		empty
@@ -21,11 +21,10 @@
 	)
 )
 
-
 ;;2
+;; tipos-lista: (listof any) → (listof string)
 ;; Funcion que devuelve una lista con los tipos de datos
 ;; que tiene la lista pasada por parametro
-;; tipos-lista: (listof any) → (listof string)
 (define (tipos-lista lista)
 	(if (empty? lista)
 		empty
@@ -51,7 +50,9 @@
 )
 
 ;; Aux raroAux 
-;; Funcion auxiliar 
+;; raroAux: number -> number
+;; Funcion auxiliar que evalua las operaciones que harian, de ser
+;; el caso, al parametro un numero raro
 (define (raroAux num)
   (if (= num 0)
   	0
@@ -61,9 +62,10 @@
 
 ;;3
 ;; raro?: number → boolean
+;; Funcion que compara a un numero con su evaluacion para verificar si es raro
 (define (raro? num)
-  (= (raroAux num) num))
-
+  (= (raroAux num) num)
+)
 
 ;;4
 ;; descendente?: number* → boolean
@@ -81,6 +83,8 @@
 ))
 
 ;; Aux reversa de una lista
+;; reversaAux: (listof any) -> (listof any)
+;; FUncion que devuelve una lista en reversa
 (define (reversaAux lista)
 	(if (empty? lista)
 		empty
@@ -91,6 +95,7 @@
 
 ;;5
 ;; palindromo?: string → boolean
+;; Funcion que decide si una cadena es palindromo o no
 (define (palindromo? cadena)
 	(let* (
 		[rev (reversaAux (string->list cadena))]
@@ -103,43 +108,29 @@
 	)
 )
 
-
 ;;6
+;; primo: number -> boolean
 ;;Numero primo
-;;(num 1 0)
+;;Funcion que decide si un numero es primo o no
 (define (primo num contador acumula)
-  (if (and(>= num contador) (=(remainder num contador) 0)   )
-      (primo num (+ contador 1)(+ acumula 1))
-
-      (if (>= num contador)
-          (primo num (+ contador 1) acumula)
-
-          (if(= acumula 2)
-             #t
-             #f
-             )
-          )
-   )
+  (if (and(>= num contador) (=(remainder num contador) 0) )
+  	(primo num (+ contador 1)(+ acumula 1))
+  	(if (>= num contador)
+  		(primo num (+ contador 1) acumula)
+  		(if (= acumula 2)
+  			#t
+        #f
+      )
+    )
+  )
 )
 
-
-
 ;;7
-;; num-comb-monedas: number → number
-;;(define (num-comb-monedas cantidad)
-;;	(let-values (
-;;		[(cuantos_10 falta) (quotient/remainder cantidad 10)]
-;;		[(casos_10) (* cuantos_10 10)])
-;;		(cond
-;;			[(=0 falta) casos_10]
-;;			[(=1 falta) (add1 casos_10)]
-;;			[(or (=2 falta) (=3 faltan)) (+ casos_10 2)]
-;;			[(=4 falta) (+ casos_10 3)]
-;;		)
-;;	)
-;;)
 
 ;; Aux para promedio
+;; sumaAux: (listof number) -> number
+;; Funcion que devuelve la suma de todos los elementos
+;; numericos de una lista
 (define (sumaAux lista)
   (if (empty? lista)
     0
@@ -148,6 +139,8 @@
 )
 
 ;;8
+;; promedio: (listof number -> number)
+;; Funcion que devuelve el promedio de una lista de numeros
 (define (promedio lista)
   (if (empty? lista)
   	0
@@ -155,52 +148,18 @@
   )
 )
 
-;;8
-;;(define (calcula-moda hs nums)
-;;	(define (frec-num hs ))
-;;	(if (empty? nums)
-;;		hs
-;;		(let
-;;			[num (first nums)]
-;;		)
-;;	)
-;;)
-
-
 ;;9
-;;Rota la lista hacia la izquierda
-(define (rotaAux lista)
-  (if (null? lista)
-  	'()
-  	(append (cdr lista) (cons (car lista)'() )
-    )
-  )
-)
-
-(define (ultimo lista)
-	(if (empty? lista)
-		empty
-		(first (reversaAux lista))
-	)
-)
-
+;; rotar: (listof any) -> (listof any)
+;;Funcion que rota la lista hacia la izquierda
 (define (rotar lista)
-  (if (empty? lista)
+  (if (null? lista)
       '()
-      (let* (
-      	[prim (first lista)]
-      	[ult (ultimo lista)])
-      	(if (= prim ult)
-      		(append (rotar lista) '() )
-      		(rotar lista)
-      	)
+      (append (cdr lista)
+              (cons (car lista)
+                    '()
+                    )
+              )   
       )
-      ;(for ([i (length lista)])
-  			;(display (rotaAux lista))
-  		;)
-      ;;(rotaAux lista)
-  )
 )
-
 ;;10
 ;;sucesion geometrica
