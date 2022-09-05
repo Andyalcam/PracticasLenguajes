@@ -148,32 +148,18 @@
   )
 
 
-
 ;;9
 ;;Rota la lista hacia la izquierda
-(define (rotaAux lista)
+(define (rotar lista)
   (if (null? lista)
       '()
       (append (cdr lista)
               (cons (car lista)
                     '()
                     )
-              )
+              )   
       )
 )
-
-(define (rotar lista)
-  (if (empty? lista)
-      '()
-      (
-       (rotaAux lista))
-      )
-
-
-
-
-
-  )
 
 ;;10
 ;;sucesion geometrica
