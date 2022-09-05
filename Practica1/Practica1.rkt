@@ -1,6 +1,8 @@
 #lang plai
 
 ;;1
+;; Funcion que filtra una lista dada y regresa otra con los
+;; los elementos que coincidadan con el predicado pasado por parametro
 ;; filtra-lista: (listof any) procedure → (listof any)
 (define (filtra-lista lista predicado)
 	(if (empty? lista)
@@ -21,6 +23,8 @@
 
 
 ;;2
+;; Funcion que devuelve una lista con los tipos de datos
+;; que tiene la lista pasada por parametro
 ;; tipos-lista: (listof any) → (listof string)
 (define (tipos-lista lista)
 	(if (empty? lista)
@@ -46,23 +50,18 @@
 	)
 )
 
-;; raro?: number → boolean
-;;(define (raro? a)
-;;	(if (= a 14)
-;;		#t
-;;		#f
-;;	)
-;;)
-
+;; Aux raroAux 
+;; Funcion auxiliar 
+(define (raroAux num)
+  (if (= num 0)
+  	0
+    (+ (expt (modulo num 10) 3)(raroAux (quotient num 10)))
+  )
+)
 ;;3
 ;; raro?: number → boolean
 (define (raro? num)
   (= (raroAux num) num))
-
-(define (raroAux num)
-  (cond
-    [(= num 0) 0]
-    [else (+ (expt (modulo num 10) 3)(raroAux (quotient num 10)))]))
 
 
 ;;4
@@ -138,6 +137,22 @@
 ;;		)
 ;;	)
 ;;)
+
+;; Aux para promedio
+(define (sumaAux lista)
+  (if (empty? lista)
+    0
+    (+(car lista)(sumaAux (cdr lista)))
+  )
+)
+
+;;8
+(define (promedio lista)
+  (if (empty? lista)
+  	0
+  	(/ (sumaAux lista) (length lista))
+  )
+)
 
 ;;8
 ;;(define (calcula-moda hs nums)
