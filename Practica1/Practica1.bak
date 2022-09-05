@@ -1,6 +1,5 @@
 #lang plai
 
-;;1
 ;; filtra-lista: (listof any) procedure → (listof any)
 (define (filtra-lista lista predicado)
 	(if (empty? lista)
@@ -20,7 +19,6 @@
 )
 
 
-;;2
 ;; tipos-lista: (listof any) → (listof string)
 (define (tipos-lista lista)
 	(if (empty? lista)
@@ -47,25 +45,13 @@
 )
 
 ;; raro?: number → boolean
-;;(define (raro? a)
-;;	(if (= a 14)
-;;		#t
-;;		#f
-;;	)
-;;)
+(define (raro? a)
+	(if (= a 14)
+		#t
+		#f
+	)
+)
 
-;;3
-;; raro?: number → boolean
-(define (raro? num)
-  (= (raroAux num) num))
-
-(define (raroAux num)
-  (cond
-    [(= num 0) 0]
-    [else (+ (expt (modulo num 10) 3)(raroAux (quotient num 10)))]))
-
-
-;;4
 ;; descendente?: number* → boolean
 (define descendente? (lambda nums
 	(if (< (length nums) 2) 
@@ -88,8 +74,6 @@
 		)
 	)
 )
-
-;;5
 ;; palindromo?: string → boolean
 (define (palindromo? cadena)
 	(let* (
@@ -103,28 +87,50 @@
 	)
 )
 
+;;Aux
+(define (primoAux? num div cont)
+	(let* (
+		[resi (remainder num num)]
+		[contAux cont]
+		[divAux div]
+		)
+		(printf "resi")
+		(cond
+			[(= divAux 0) (if (= contAux 2)
+				#t 
+				#f)]
+			[(= resi 0) (primoAux? num (- 1 num) (+ cont 1))]
 
-;;6
-;;Numero primo
-;;(num 1 0)
-(define (primo num contador acumula)
-  (if (and(>= num contador) (=(remainder num contador) 0)   )
-      (primo num (+ contador 1)(+ acumula 1))
-
-      (if (>= num contador)
-          (primo num (+ contador 1) acumula)
-
-          (if(= acumula 2)
-             #t
-             #f
-             )
-          )
-   )
+			[else (primoAux? num (- 1 num) (cont))]
+		)
+	)
 )
+;; primo?: number → boolean
+;(define (primo? num)
+;	(let* (
+;		[cont 0]
+;		[resi (remainder num num)]
+;		)
+;		(if (= resi 0)
+;			(+ cont 1)
+;		)
+;		(if (= cont 2)
+;			#t
+;			#f
+;		)
+;	)
 
+	;(if (or (not(= (remainder num num) 0)) (not(= (remainder num 1) 0)))
+	;	#t
+	;	#f
+	;)
 
+	;(cond 
+	;	[(= (remainder num num) 0) #t]
+	;	[(= (remainder num 1) 0) #t]
+	;	[else #f])
+;)
 
-;;7
 ;; num-comb-monedas: number → number
 ;;(define (num-comb-monedas cantidad)
 ;;	(let-values (
@@ -139,7 +145,6 @@
 ;;	)
 ;;)
 
-;;8
 ;;(define (calcula-moda hs nums)
 ;;	(define (frec-num hs ))
 ;;	(if (empty? nums)
@@ -150,34 +155,3 @@
 ;;	)
 	
 ;;)
-
-;;(define (calcula-moda hs nums)
-;;  (if (empty? nums)
-;;      hs
-;;      (let (
-;;            [num (first nums)]
-;;            [val (hash-ref hs num #f)]
-;;            (if (not (eq? val #f)))
-;;            (hash-set! hs num (add1 val))
-;;            (hash-set! hs num 1)
-;;            )
-;;          )
-;;   )
-;; )
-
-
-;;9
-;;Rota la lista hacia la izquierda
-(define (rotate-left LIST)
-  (if (null? LIST)
-      '()
-      (append (cdr LIST)
-              (cons (car LIST)
-                    '())
-              )
-      )
-)
-
-
-;;10
-;;sucesion geometrica
