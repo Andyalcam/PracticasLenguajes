@@ -58,6 +58,7 @@
     (+ (expt (modulo num 10) 3)(raroAux (quotient num 10)))
   )
 )
+
 ;;3
 ;; raro?: number → boolean
 (define (raro? num)
@@ -80,10 +81,10 @@
 ))
 
 ;; Aux reversa de una lista
-(define (reversa lista)
+(define (reversaAux lista)
 	(if (empty? lista)
 		empty
-		(append (reversa (cdr lista)) (list(car lista))
+		(append (reversaAux (cdr lista)) (list(car lista))
 		)
 	)
 )
@@ -92,7 +93,7 @@
 ;; palindromo?: string → boolean
 (define (palindromo? cadena)
 	(let* (
-		[rev (reversa (string->list cadena))]
+		[rev (reversaAux (string->list cadena))]
 		[ncad (list->string rev)]
 		)
 		(if (string=? cadena ncad)
@@ -163,36 +164,43 @@
 ;;			[num (first nums)]
 ;;		)
 ;;	)
-	
 ;;)
-
-;;(define (calcula-moda hs nums)
-;;  (if (empty? nums)
-;;      hs
-;;      (let (
-;;            [num (first nums)]
-;;            [val (hash-ref hs num #f)]
-;;            (if (not (eq? val #f)))
-;;            (hash-set! hs num (add1 val))
-;;            (hash-set! hs num 1)
-;;            )
-;;          )
-;;   )
-;; )
 
 
 ;;9
 ;;Rota la lista hacia la izquierda
-(define (rotate-left LIST)
-  (if (null? LIST)
-      '()
-      (append (cdr LIST)
-              (cons (car LIST)
-                    '())
-              )
-      )
+(define (rotaAux lista)
+  (if (null? lista)
+  	'()
+  	(append (cdr lista) (cons (car lista)'() )
+    )
+  )
 )
 
+(define (ultimo lista)
+	(if (empty? lista)
+		empty
+		(first (reversaAux lista))
+	)
+)
+
+(define (rotar lista)
+  (if (empty? lista)
+      '()
+      (let* (
+      	[prim (first lista)]
+      	[ult (ultimo lista)])
+      	(if (= prim ult)
+      		(append (rotar lista) '() )
+      		(rotar lista)
+      	)
+      )
+      ;(for ([i (length lista)])
+  			;(display (rotaAux lista))
+  		;)
+      ;;(rotaAux lista)
+  )
+)
 
 ;;10
 ;;sucesion geometrica
