@@ -1,5 +1,8 @@
 #lang plai
 
+;; Alvarado Camacho Andrea			318064343
+;; Velazquez Rosas Abner Elias	318171373
+
 ;;1
 ;; filtra-lista: (listof any) procedure → (listof any)
 ;; Funcion que filtra una lista dada y regresa otra con los
@@ -153,13 +156,13 @@
 ;;Funcion que rota la lista hacia la izquierda
 (define (rotar lista)
   (if (null? lista)
-      '()
-      (append (cdr lista)
-              (cons (car lista)
-                    '()
-                    )
-              )   
-      )
+  	'()
+    (append (cdr lista)
+    	(cons (car lista)
+    		'()
+    	)
+   	)   
+  )
 )
 ;;10
 ;;sucesion geometrica
