@@ -53,9 +53,16 @@
 )
 
 (define-type Tren
+	[tren-f (tren Tren?)]
 	[tren-v (vagon Vagon?)]
 	[tren (loci locomotora?) (resto Tren?) (locd locomotora?)]
 	[treni (loci locomotora?) (resto Tren?)]
 	[trend (resto Tren?) (locd locomotora?)]
 )
 
+;;(num−pasajeros (tren−f (tren−f (tren−f (tren−loc (locomotora 1)) 2 (pasajeros 10)) (restaurante 5 2)) 3 (dormitorio 10)))
+
+;; num-pasajeros: Tren → positive-integer
+(define (num-pasajeros tren)
+	"holi"
+)
