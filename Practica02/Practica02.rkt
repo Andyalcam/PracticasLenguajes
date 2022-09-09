@@ -22,7 +22,7 @@
 		[(rectangulo? f) (* (+ (rectangulo-a f) (rectangulo-b f)) 2)]
 		[(rombo? f) (* (rombo-l f) 4)]
 		[(paralelogramo? f) (* (+ (paralelogramo-a f) (paralelogramo-b f)) 2)]
-		[(elipse? f) (* (* 2 3.141592) (sqrt (aux (elipse-a f) (elipse-b f))))]
+		[(elipse? f) (* (* 2 pi) (sqrt (aux (elipse-a f) (elipse-b f))))]
 	)
 )
 
@@ -32,9 +32,16 @@
 
 (define (area f)
 	(cond
-		[(triangulo? f) "holi"]
-			;; formula de Heron
-			;;(squrt (* (semiP)) )]
+		[(triangulo? f)
+			(sqrt (* (semiP (triangulo-a f) (triangulo-b f) (triangulo-c f)) (- (semiP (triangulo-a f) (triangulo-b f) (triangulo-c f)) (triangulo-a f)) (- (semiP (triangulo-a f) (triangulo-b f) (triangulo-c f)) (triangulo-b f)) (- (semiP (triangulo-a f) (triangulo-b f) (triangulo-c f)) (triangulo-c f)) ) )]
+		[(rectangulo? f)
+			(* (rectangulo-a f) (rectangulo-b f))]
+		[(rombo? f)
+			(/ (* (rombo-d f) (rombo-D f)) 2)]
+		[(paralelogramo? f)
+			(* (paralelogramo-b f) (paralelogramo-h f))]
+		[(elipse? f)
+			(* pi (elipse-a f) (elipse-b f))]
 	)
 )
 
